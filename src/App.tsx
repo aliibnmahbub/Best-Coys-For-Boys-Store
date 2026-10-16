@@ -16,6 +16,8 @@ import OrderDetails from './pages/public/OrderDetails';
 import Login from './pages/auth/Login';
 import Register from './pages/auth/Register';
 import LegalPageView from './pages/public/LegalPageView';
+import Account from './pages/account/Account';             // <-- নতুন যুক্ত হলো
+import ProductDetails from './pages/public/ProductDetails'; // <-- নতুন যুক্ত হলো
 
 // Admin Layout & Pages
 import AdminLayout from './layouts/AdminLayout';
@@ -75,6 +77,8 @@ export default function App() {
             <Route path="/orders/:orderId" element={<OrderDetails />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/account" element={<Account />} />                  {/* <-- নতুন রাউট */}
+            <Route path="/product/:id" element={<ProductDetails />} />      {/* <-- নতুন রাউট */}
             
             {/* Legal Pages */}
             <Route path="/privacy-policy" element={<LegalPageView slug="privacy-policy" />} />
