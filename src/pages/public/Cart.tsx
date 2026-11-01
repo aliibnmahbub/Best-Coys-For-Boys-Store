@@ -36,7 +36,7 @@ export default function Cart() {
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
       <Helmet>
-        <title>Shopping Cart ({items.length}) | BEST Coys For Boys</title>
+        <title>{`Shopping Cart (${items.length}) | BEST Coys For Boys`}</title>
       </Helmet>
 
       <h1 className="text-2xl md:text-3xl font-bold text-neutral-900 mb-6">Shopping Cart</h1>
