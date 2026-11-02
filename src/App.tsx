@@ -10,16 +10,16 @@ import { useAuthStore } from './store/authStore';
 // Layouts & Public Pages
 import PublicLayout from './layouts/PublicLayout';
 import Home from './pages/public/Home';
-import Categories from './pages/public/Categories';                // <-- নতুন যুক্ত হলো
-import CategoryProducts from './pages/public/CategoryProducts';    // <-- নতুন যুক্ত হলো
+import Categories from './pages/public/Categories';
+import CategoryProducts from './pages/public/CategoryProducts';
 import Cart from './pages/public/Cart';
 import Checkout from './pages/public/Checkout';
 import OrderDetails from './pages/public/OrderDetails';
 import Login from './pages/auth/Login';
 import Register from './pages/auth/Register';
 import LegalPageView from './pages/public/LegalPageView';
-import Account from './pages/account/Account';             
-import ProductDetails from './pages/public/ProductDetails'; 
+import Account from './pages/account/Account';
+import ProductDetails from './pages/public/ProductDetails';
 
 // Admin Layout & Pages
 import AdminLayout from './layouts/AdminLayout';
@@ -28,6 +28,9 @@ import ProductManagement from './pages/admin/ProductManagement';
 import ProductForm from './pages/admin/ProductForm';
 import OrderManagement from './pages/admin/OrderManagement';
 import LegalPageManagement from './pages/admin/LegalPageManagement';
+import CategoryManagement from './pages/admin/CategoryManagement';   // <-- নতুন যুক্ত হলো
+import CustomerManagement from './pages/admin/CustomerManagement'; // <-- নতুন যুক্ত হলো
+import Settings from './pages/admin/Settings';                       // <-- নতুন যুক্ত হলো
 
 export default function App() {
   const { setUser, setLoading, isLoading } = useAuthStore();
@@ -74,15 +77,15 @@ export default function App() {
           {/* Public Layout Routes */}
           <Route element={<PublicLayout />}>
             <Route path="/" element={<Home />} />
-            <Route path="/categories" element={<Categories />} />                        {/* <-- নতুন রাউট */}
-            <Route path="/category/:categoryId" element={<CategoryProducts />} />        {/* <-- নতুন রাউট */}
+            <Route path="/categories" element={<Categories />} />
+            <Route path="/category/:categoryId" element={<CategoryProducts />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/checkout" element={<Checkout />} />
             <Route path="/orders/:orderId" element={<OrderDetails />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/account" element={<Account />} />                  
-            <Route path="/product/:id" element={<ProductDetails />} />      
+            <Route path="/account" element={<Account />} />
+            <Route path="/product/:id" element={<ProductDetails />} />
             
             {/* Legal Pages */}
             <Route path="/privacy-policy" element={<LegalPageView slug="privacy-policy" />} />
@@ -97,6 +100,9 @@ export default function App() {
             <Route path="products/new" element={<ProductForm />} />
             <Route path="products/:id/edit" element={<ProductForm />} />
             <Route path="orders" element={<OrderManagement />} />
+            <Route path="categories" element={<CategoryManagement />} />     {/* <-- নতুন রাউট */}
+            <Route path="customers" element={<CustomerManagement />} />   {/* <-- নতুন রাউট */}
+            <Route path="settings" element={<Settings />} />                 {/* <-- নতুন রাউট */}
             <Route path="legal-pages" element={<LegalPageManagement />} />
           </Route>
         </Routes>
