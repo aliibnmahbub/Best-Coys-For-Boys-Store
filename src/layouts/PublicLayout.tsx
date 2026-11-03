@@ -69,16 +69,16 @@ export default function PublicLayout() {
         <Outlet />
       </main>
 
-      {/* Floating Facebook Button (মোবাইল এবং ডেস্কটপ উভয় ডিভাইসে স্ক্রিনের কোণায় ভাসমান থাকবে) */}
+      {/* Floating Water Glass / Liquid Glass Facebook Button (আইফোন স্টাইল ওয়াটার গ্লাস ইফেক্ট) */}
       <a 
         href="https://www.facebook.com/bestcoysforboys" 
         target="_blank" 
         rel="noopener noreferrer"
         aria-label="Visit our Facebook Page"
-        className="fixed bottom-20 right-4 md:bottom-6 md:right-6 bg-[#1877F2] text-white p-3.5 rounded-full shadow-2xl hover:bg-[#166fe5] transition-all z-40 flex items-center justify-center group hover:scale-110"
+        className="fixed bottom-20 right-4 md:bottom-6 md:right-6 bg-white/30 dark:bg-black/30 backdrop-blur-md border border-white/40 dark:border-white/10 text-[#1877F2] p-3.5 rounded-full shadow-[0_8px_32px_0_rgba(31,38,135,0.15)] hover:bg-white/50 transition-all z-40 flex items-center justify-center group hover:scale-110"
       >
-        <Facebook className="w-6 h-6 fill-white" />
-        <span className="max-w-0 overflow-hidden whitespace-nowrap group-hover:max-w-xs transition-all duration-300 ease-in-out text-xs font-semibold px-0 group-hover:px-2">
+        <Facebook className="w-6 h-6 fill-[#1877F2] drop-shadow-sm" />
+        <span className="max-w-0 overflow-hidden whitespace-nowrap group-hover:max-w-xs transition-all duration-300 ease-in-out text-xs font-semibold px-0 group-hover:px-2 text-neutral-900 drop-shadow-sm">
           Chat on Facebook
         </span>
       </a>
