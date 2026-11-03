@@ -5,38 +5,7 @@ import { useCartStore } from '../../store/cartStore';
 import toast from 'react-hot-toast';
 
 // ডেমো প্রোডাক্ট লিস্ট (পরে এগুলো ফায়ারবেজ ডাটাবেজ থেকে আসবে)
-const featuredProducts = [
-  {
-    id: '1',
-    name: 'Premium Wireless Headphones',
-    price: 2500,
-    discountPrice: 1999,
-    rating: 4.8,
-    image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=600&auto=format&fit=crop',
-  },
-  {
-    id: '2',
-    name: 'Smart Fitness Watch Series 7',
-    price: 3500,
-    rating: 4.5,
-    image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=600&auto=format&fit=crop',
-  },
-  {
-    id: '3',
-    name: 'Pro Gaming Mouse RGB',
-    price: 1200,
-    discountPrice: 950,
-    rating: 4.6,
-    image: 'https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?q=80&w=600&auto=format&fit=crop',
-  },
-  {
-    id: '4',
-    name: 'Ultra Fast Power Bank 20000mAh',
-    price: 1800,
-    rating: 4.9,
-    image: 'https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?q=80&w=600&auto=format&fit=crop',
-  }
-];
+const featuredProducts = [];
 
 const categories = [
   { name: 'Gadgets', icon: '📱' },
