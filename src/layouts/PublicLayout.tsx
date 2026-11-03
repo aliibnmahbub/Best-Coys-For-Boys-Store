@@ -1,5 +1,5 @@
 import { Outlet, Link, useLocation } from 'react-router-dom';
-import { Home, Search, ShoppingCart, User, LayoutGrid } from 'lucide-react';
+import { Home, Search, ShoppingCart, User, LayoutGrid, Facebook } from 'lucide-react';
 import { useCartStore } from '../store/cartStore';
 
 export default function PublicLayout() {
@@ -11,7 +11,7 @@ export default function PublicLayout() {
   const isActive = (path: string) => location.pathname === path;
 
   return (
-    <div className="min-h-screen bg-neutral-50 flex flex-col">
+    <div className="min-h-screen bg-neutral-50 flex flex-col relative">
       {/* Top Header (সবসময় উপরে ফিক্সড থাকবে) */}
       <header className="fixed top-0 left-0 right-0 bg-white shadow-sm z-50">
         <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
@@ -65,15 +65,44 @@ export default function PublicLayout() {
       </header>
 
       {/* Main Content Area (এখানে পেজের আসল কনটেন্ট দেখাবে) */}
-      {/* pt-16 দেওয়া হয়েছে কারণ উপরে ১৬px এর হেডার আছে, pb-16 মোবাইলের বটম নেভের জন্য */}
-      <main className="flex-1 pt-16 pb-16 md:pb-0 max-w-7xl mx-auto w-full">
+      <main className="flex-1 pt-16 pb-20 md:pb-0 max-w-7xl mx-auto w-full">
         <Outlet />
       </main>
 
-      {/* Desktop Footer (শুধুমাত্র বড় স্ক্রিনে দেখাবে) */}
-      <footer className="hidden md:block bg-white border-t py-8 mt-auto">
-        <div className="max-w-7xl mx-auto px-4 text-center text-neutral-500">
+      {/* Floating Facebook Button (মোবাইল এবং ডেস্কটপ উভয় ডিভাইসে স্ক্রিনের কোণায় ভাসমান থাকবে) */}
+      <a 
+        href="https://www.facebook.com/bestcoysforboys" 
+        target="_blank" 
+        rel="noopener noreferrer"
+        aria-label="Visit our Facebook Page"
+        className="fixed bottom-20 right-4 md:bottom-6 md:right-6 bg-[#1877F2] text-white p-3.5 rounded-full shadow-2xl hover:bg-[#166fe5] transition-all z-40 flex items-center justify-center group hover:scale-110"
+      >
+        <Facebook className="w-6 h-6 fill-white" />
+        <span className="max-w-0 overflow-hidden whitespace-nowrap group-hover:max-w-xs transition-all duration-300 ease-in-out text-xs font-semibold px-0 group-hover:px-2">
+          Chat on Facebook
+        </span>
+      </a>
+
+      {/* Desktop & Mobile Footer */}
+      <footer className="bg-white border-t py-8 mt-auto mb-14 md:mb-0">
+        <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4 text-neutral-500 text-sm">
           <p>&copy; {new Date().getFullYear()} BEST Coys For Boys. All rights reserved.</p>
+          
+          {/* Footer Facebook Link & Legal Links */}
+          <div className="flex items-center gap-6">
+            <a 
+              href="https://www.facebook.com/bestcoysforboys" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="flex items-center gap-1.5 text-neutral-700 hover:text-[#1877F2] transition-colors font-medium"
+            >
+              <Facebook className="w-4 h-4 fill-[#1877F2] text-[#1877F2]" />
+              <span>Facebook Page</span>
+            </a>
+            <Link to="/privacy-policy" className="hover:text-primary-600 transition-colors">Privacy Policy</Link>
+            <Link to="/terms" className="hover:text-primary-600 transition-colors">Terms</Link>
+            <Link to="/refund-policy" className="hover:text-primary-600 transition-colors">Refund</Link>
+          </div>
         </div>
       </footer>
 
