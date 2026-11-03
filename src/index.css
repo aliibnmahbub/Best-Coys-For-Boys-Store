@@ -9,7 +9,12 @@
   }
   
   body {
-    @apply bg-neutral-50 text-neutral-900 font-sans antialiased selection:bg-primary-500 selection:text-white;
+    @apply bg-neutral-50 text-neutral-900 font-sans antialiased selection:bg-primary-500 selection:text-white transition-colors duration-300;
+  }
+
+  /* Dark Mode Overrides */
+  .dark body {
+    @apply bg-neutral-950 text-neutral-100;
   }
 }
 
@@ -18,17 +23,29 @@
   width: 6px;
   height: 6px;
 }
+
 ::-webkit-scrollbar-track {
   background: #f1f1f1;
 }
+
+.dark ::-webkit-scrollbar-track {
+  background: #171717;
+}
+
 ::-webkit-scrollbar-thumb {
   background: #cbd5e1;
   border-radius: 3px;
 }
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #404040;
+}
+
 ::-webkit-scrollbar-thumb:hover {
   background: #94a3b8;
 }
 
+/* Mobile Safe Area Utilities */
 .safe-bottom {
   padding-bottom: env(safe-area-inset-bottom);
 }
