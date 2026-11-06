@@ -3,9 +3,10 @@ import { useNavigate, useParams, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { Upload, X, ArrowLeft, Save } from 'lucide-react';
 import { db } from '../../services/firebase/firebaseConfig';
-import { collection, addDoc, doc, getDoc, updateDoc } from 'firebase/firestore';
+import { collection, addDoc, doc, getDoc, updateDoc, getDocs } from 'firebase/firestore';
 import { uploadImageToCloudinary } from '../../services/cloudinary/cloudinaryService';
 import toast from 'react-hot-toast';
+import type { Category } from '../../types';
 
 export default function ProductForm() {
   const { id } = useParams<{ id: string }>();
@@ -17,13 +18,34 @@ export default function ProductForm() {
   const [price, setPrice] = useState('');
   const [discountPrice, setDiscountPrice] = useState('');
   const [stock, setStock] = useState('');
-  const [categoryId, setCategoryId] = useState('general');
+  const [categoryId, setCategoryId] = useState('');
   const [images, setImages] = useState<string[]>([]);
   const [isFeatured, setIsFeatured] = useState(false);
+  const [categories, setCategories] = useState<Category[]>([]);
 
   const [uploading, setUploading] = useState(false);
   const [loading, setLoading] = useState(isEditMode);
   const [submitting, setSubmitting] = useState(false);
+
+  // ফায়ারস্টোর থেকে ক্যাটাগরিগুলো ফেচ করা
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const querySnapshot = await getDocs(collection(db, 'categories'));
+        const list: Category[] = [];
+        querySnapshot.forEach((docSnap) => {
+          list.push({ id: docSnap.id, ...docSnap.data() } as Category);
+        });
+        setCategories(list);
+        if (!isEditMode && list.length > 0 && !categoryId) {
+          setCategoryId(list[0].slug); // Default selection
+        }
+      } catch (error) {
+        console.error('Error fetching categories:', error);
+      }
+    };
+    fetchCategories();
+  }, [isEditMode, categoryId]);
 
   // এডিট মোড হলে আগের ডাটা লোড করা
   useEffect(() => {
@@ -39,7 +61,7 @@ export default function ProductForm() {
             setPrice(data.price?.toString() || '');
             setDiscountPrice(data.discountPrice?.toString() || '');
             setStock(data.stock?.toString() || '');
-            setCategoryId(data.categoryId || 'general');
+            setCategoryId(data.categoryId || '');
             setImages(data.images || []);
             setIsFeatured(data.isFeatured || false);
           } else {
@@ -57,7 +79,6 @@ export default function ProductForm() {
     }
   }, [isEditMode, id, navigate]);
 
-  // Cloudinary এ ছবি আপলোড হ্যান্ডলার
   const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
     if (!files || files.length === 0) return;
@@ -79,17 +100,20 @@ export default function ProductForm() {
     }
   };
 
-  // ছবি রিমুভ করার ফাংশন
   const handleRemoveImage = (indexToRemove: number) => {
     setImages(images.filter((_, index) => index !== indexToRemove));
   };
 
-  // ফর্ম সাবমিট (Firestore এ সেভ বা আপডেট করা)
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (images.length === 0) {
       toast.error('Please upload at least one product image.');
+      return;
+    }
+    
+    if (!categoryId) {
+      toast.error('Please create or select a category first.');
       return;
     }
 
@@ -103,7 +127,7 @@ export default function ProductForm() {
         discountPrice: discountPrice ? Number(discountPrice) : null,
         stock: Number(stock),
         categoryId,
-        images, // Cloudinary URLs ONLY
+        images,
         isFeatured,
         rating: 5.0,
         reviewsCount: 0,
@@ -155,7 +179,6 @@ export default function ProductForm() {
       </div>
 
       <form onSubmit={handleSubmit} className="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-neutral-100 space-y-6">
-        {/* Basic Info */}
         <div className="space-y-4">
           <h2 className="text-lg font-bold text-neutral-900 border-b pb-2">Basic Information</h2>
           
@@ -184,7 +207,6 @@ export default function ProductForm() {
           </div>
         </div>
 
-        {/* Pricing & Inventory */}
         <div className="space-y-4">
           <h2 className="text-lg font-bold text-neutral-900 border-b pb-2">Pricing & Inventory</h2>
           
@@ -230,17 +252,17 @@ export default function ProductForm() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
             <div>
-              <label className="block text-sm font-medium text-neutral-700 mb-1">Category</label>
+              <label className="block text-sm font-medium text-neutral-700 mb-1">Category *</label>
               <select
+                required
                 value={categoryId}
                 onChange={(e) => setCategoryId(e.target.value)}
-                className="w-full bg-neutral-50 border border-neutral-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500"
+                className="w-full bg-neutral-50 border border-neutral-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 capitalize"
               >
-                <option value="general">General</option>
-                <option value="gadgets">Gadgets</option>
-                <option value="accessories">Accessories</option>
-                <option value="electronics">Electronics</option>
-                <option value="lifestyle">Lifestyle</option>
+                <option value="" disabled>Select a category</option>
+                {categories.map(cat => (
+                  <option key={cat.id} value={cat.slug}>{cat.name}</option>
+                ))}
               </select>
             </div>
 
@@ -258,7 +280,6 @@ export default function ProductForm() {
           </div>
         </div>
 
-        {/* Media Upload (Cloudinary) */}
         <div className="space-y-4">
           <h2 className="text-lg font-bold text-neutral-900 border-b pb-2">Product Images (Cloudinary)</h2>
           
@@ -289,10 +310,8 @@ export default function ProductForm() {
               />
             </label>
           </div>
-          <p className="text-xs text-neutral-400">Images are uploaded directly to Cloudinary and stored securely.</p>
         </div>
 
-        {/* Submit Button */}
         <div className="pt-4 border-t">
           <button
             type="submit"
