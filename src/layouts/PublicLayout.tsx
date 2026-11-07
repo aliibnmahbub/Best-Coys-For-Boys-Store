@@ -1,5 +1,5 @@
 import { Outlet, Link, useLocation } from 'react-router-dom';
-import { Home, Search, ShoppingCart, User, LayoutGrid, Facebook } from 'lucide-react';
+import { Home, Search, ShoppingCart, User, LayoutGrid, Facebook, Download } from 'lucide-react';
 import { useCartStore } from '../store/cartStore';
 
 export default function PublicLayout() {
@@ -39,8 +39,19 @@ export default function PublicLayout() {
             <Search className="absolute right-3 top-2.5 text-neutral-400 w-5 h-5" />
           </div>
 
-          {/* Right Actions (Cart and User Profile) */}
-          <div className="flex items-center gap-4">
+          {/* Right Actions (Install App, Search, Cart and User Profile) */}
+          <div className="flex items-center gap-3 md:gap-4">
+            
+            {/* Install App Button (Direct Download Link) */}
+            <a 
+              href="https://drive.google.com/uc?export=download&id=1a7dyvylOtFPn6NboWuixIQxc0Vn9P-yQ"
+              className="flex items-center gap-1.5 bg-primary-50 text-primary-600 hover:bg-primary-500 hover:text-white border border-primary-200 hover:border-primary-500 px-2.5 py-1.5 md:px-4 md:py-1.5 rounded-full text-xs md:text-sm font-medium transition-all"
+            >
+              <Download className="w-3.5 h-3.5 md:w-4 md:h-4" />
+              <span className="hidden md:inline">Install App</span>
+              <span className="inline md:hidden">App</span>
+            </a>
+
             {/* Mobile Search Icon */}
             <button className="md:hidden text-neutral-600 hover:text-primary-500 transition-colors">
               <Search className="w-6 h-6" />
