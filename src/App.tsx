@@ -6,6 +6,7 @@ import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from './services/firebase/firebaseConfig';
 import { getUserProfile } from './services/firebase/authService';
 import { useAuthStore } from './store/authStore';
+import ScrollToTop from './ScrollToTop'; // <-- স্ক্রল ফিক্সের জন্য ইমপোর্ট করা হলো
 
 // Layouts & Public Pages
 import PublicLayout from './layouts/PublicLayout';
@@ -28,9 +29,9 @@ import ProductManagement from './pages/admin/ProductManagement';
 import ProductForm from './pages/admin/ProductForm';
 import OrderManagement from './pages/admin/OrderManagement';
 import LegalPageManagement from './pages/admin/LegalPageManagement';
-import CategoryManagement from './pages/admin/CategoryManagement';   // <-- নতুন যুক্ত হলো
-import CustomerManagement from './pages/admin/CustomerManagement'; // <-- নতুন যুক্ত হলো
-import Settings from './pages/admin/Settings';                       // <-- নতুন যুক্ত হলো
+import CategoryManagement from './pages/admin/CategoryManagement';
+import CustomerManagement from './pages/admin/CustomerManagement';
+import Settings from './pages/admin/Settings';
 
 export default function App() {
   const { setUser, setLoading, isLoading } = useAuthStore();
@@ -53,7 +54,7 @@ export default function App() {
   // ফায়ারবেজ চেক করার সময় লোডিং স্পিনার দেখাবে
   if (isLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-neutral-50">
+      <div className="min-h-screen flex items-center justify-center bg-neutral-50 dark:bg-neutral-900">
         <div className="w-10 h-10 border-4 border-primary-500 border-t-transparent rounded-full animate-spin"></div>
       </div>
     );
@@ -62,6 +63,7 @@ export default function App() {
   return (
     <HelmetProvider>
       <Router>
+        <ScrollToTop /> {/* <-- এখানে রাউটারের ভেতরে বসানো হলো যাতে পেজ বদলালেই স্ক্রিন উপরে চলে যায় */}
         <Toaster 
           position="top-center" 
           toastOptions={{
@@ -100,9 +102,9 @@ export default function App() {
             <Route path="products/new" element={<ProductForm />} />
             <Route path="products/:id/edit" element={<ProductForm />} />
             <Route path="orders" element={<OrderManagement />} />
-            <Route path="categories" element={<CategoryManagement />} />     {/* <-- নতুন রাউট */}
-            <Route path="customers" element={<CustomerManagement />} />   {/* <-- নতুন রাউট */}
-            <Route path="settings" element={<Settings />} />                 {/* <-- নতুন রাউট */}
+            <Route path="categories" element={<CategoryManagement />} />
+            <Route path="customers" element={<CustomerManagement />} />
+            <Route path="settings" element={<Settings />} />
             <Route path="legal-pages" element={<LegalPageManagement />} />
           </Route>
         </Routes>
