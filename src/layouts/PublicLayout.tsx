@@ -26,10 +26,14 @@ export default function PublicLayout() {
       <header className="fixed top-0 left-0 right-0 bg-white dark:bg-neutral-800 shadow-sm z-50 transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
           
-          {/* Logo Section */}
-          <Link to="/" className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-primary-500 rounded-lg flex items-center justify-center text-white font-bold text-xl">
-              B
+          {/* Logo Section with New Logo */}
+          <Link to="/" className="flex items-center gap-2.5">
+            <div className="w-9 h-9 rounded-xl overflow-hidden flex items-center justify-center bg-neutral-900 shadow-sm border border-neutral-200 dark:border-neutral-700 flex-shrink-0">
+              <img 
+                src="https://drive.google.com/uc?export=view&id=1A7rryCi1J3QFlk4JuwAqqoqdIZpnKIhn" 
+                alt="BEST Coys Logo" 
+                className="w-full h-full object-cover"
+              />
             </div>
             <span className="font-bold text-xl text-neutral-900 dark:text-white tracking-tight hidden sm:block">
               BEST Coys For Boys
@@ -55,7 +59,7 @@ export default function PublicLayout() {
             {/* Install App Button (Direct Download Link) */}
             <a 
               href="https://drive.google.com/uc?export=download&id=1a7dyvylOtFPn6NboWuixIQxc0Vn9P-yQ"
-              className="flex items-center gap-1.5 bg-primary-50 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 hover:bg-primary-500 hover:text-white dark:hover:text-white border border-primary-200 dark:border-primary-800 hover:border-primary-500 px-2.5 py-1.5 md:px-4 md:py-1.5 rounded-full text-xs md:text-sm font-medium transition-all"
+              className="flex items-center gap-1.5 bg-primary-50 dark:bg-primary-950/40 text-primary-600 dark:text-primary-400 hover:bg-primary-500 hover:text-white dark:hover:bg-primary-500 dark:hover:text-white border border-primary-200 dark:border-primary-800 hover:border-primary-500 px-2.5 py-1.5 md:px-4 md:py-1.5 rounded-full text-xs md:text-sm font-medium transition-all"
             >
               <Download className="w-3.5 h-3.5 md:w-4 md:h-4" />
               <span className="hidden md:inline">Install App</span>
