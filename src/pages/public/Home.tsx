@@ -78,7 +78,7 @@ export default function Home() {
         <meta name="description" content="Welcome to BEST Coys For Boys - Your trusted shop for premium gadgets and accessories." />
       </Helmet>
 
-      {/* Hero Banner Section */}
+      {/* Hero Banner Section (Updated with new banner image) */}
       <section className="bg-primary-50 dark:bg-neutral-800/60 py-8 md:py-16 transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-8">
           <div className="flex-1 text-center md:text-left">
@@ -96,12 +96,20 @@ export default function Home() {
               Shop Now
             </Link>
           </div>
-          <div className="flex-1 w-full max-w-md">
+          <div className="flex-1 w-full max-w-xl">
             <img 
               src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?q=80&w=800&auto=format&fit=crop" 
               alt="Shopping Banner" 
-              className="w-full h-auto object-cover rounded-2xl shadow-2xl"
+              className="w-full h-auto object-cover rounded-2xl shadow-2xl hidden"
             />
+            {/* New Custom Store Banner */}
+            <div className="rounded-2xl overflow-hidden shadow-2xl border border-neutral-200 dark:border-neutral-700">
+              <img 
+                src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=1000&auto=format&fit=crop" 
+                alt="Best Choice For Boys Banner" 
+                className="w-full h-auto object-cover hover:scale-105 transition-transform duration-500"
+              />
+            </div>
           </div>
         </div>
       </section>
@@ -222,4 +230,4 @@ export default function Home() {
       </section>
     </div>
   );
-                      }
+}
