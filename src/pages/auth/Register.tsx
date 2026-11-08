@@ -40,23 +40,23 @@ export default function Register() {
   };
 
   return (
-    <div className="min-h-[80vh] flex items-center justify-center px-4 py-12">
+    <div className="min-h-[80vh] flex items-center justify-center px-4 py-12 transition-colors duration-300">
       <Helmet>
         <title>Register | BEST Coys For Boys</title>
       </Helmet>
 
-      <div className="max-w-md w-full bg-white rounded-3xl p-8 shadow-sm border border-neutral-100">
+      <div className="max-w-md w-full bg-white dark:bg-neutral-800 rounded-3xl p-8 shadow-sm border border-neutral-100 dark:border-neutral-700 transition-colors">
         <div className="text-center mb-8">
-          <div className="w-12 h-12 bg-primary-50 rounded-2xl flex items-center justify-center text-primary-500 mx-auto mb-3 shadow-inner">
+          <div className="w-12 h-12 bg-primary-50 dark:bg-neutral-700/60 rounded-2xl flex items-center justify-center text-primary-500 dark:text-primary-400 mx-auto mb-3 shadow-inner">
             <UserPlus className="w-6 h-6" />
           </div>
-          <h1 className="text-2xl font-bold text-neutral-900">Create Account</h1>
-          <p className="text-sm text-neutral-500 mt-1">Sign up to start shopping with us</p>
+          <h1 className="text-2xl font-bold text-neutral-900 dark:text-white">Create Account</h1>
+          <p className="text-sm text-neutral-500 dark:text-neutral-400 mt-1">Sign up to start shopping with us</p>
         </div>
 
         <form onSubmit={handleRegister} className="space-y-4">
           <div>
-            <label className="block text-xs font-semibold uppercase tracking-wider text-neutral-500 mb-1.5">Full Name</label>
+            <label className="block text-xs font-semibold uppercase tracking-wider text-neutral-500 dark:text-neutral-400 mb-1.5">Full Name</label>
             <div className="relative">
               <input
                 type="text"
@@ -64,14 +64,14 @@ export default function Register() {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="John Doe"
-                className="w-full bg-neutral-50 border border-neutral-200 rounded-xl py-3 pl-10 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all"
+                className="w-full bg-neutral-50 dark:bg-neutral-900/50 border border-neutral-200 dark:border-neutral-700 rounded-xl py-3 pl-10 pr-4 text-sm text-neutral-900 dark:text-white placeholder-neutral-400 dark:placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all"
               />
-              <User className="absolute left-3.5 top-3.5 text-neutral-400 w-4 h-4" />
+              <User className="absolute left-3.5 top-3.5 text-neutral-400 dark:text-neutral-500 w-4 h-4" />
             </div>
           </div>
 
           <div>
-            <label className="block text-xs font-semibold uppercase tracking-wider text-neutral-500 mb-1.5">Email Address</label>
+            <label className="block text-xs font-semibold uppercase tracking-wider text-neutral-500 dark:text-neutral-400 mb-1.5">Email Address</label>
             <div className="relative">
               <input
                 type="email"
@@ -79,14 +79,14 @@ export default function Register() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="your@email.com"
-                className="w-full bg-neutral-50 border border-neutral-200 rounded-xl py-3 pl-10 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all"
+                className="w-full bg-neutral-50 dark:bg-neutral-900/50 border border-neutral-200 dark:border-neutral-700 rounded-xl py-3 pl-10 pr-4 text-sm text-neutral-900 dark:text-white placeholder-neutral-400 dark:placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all"
               />
-              <Mail className="absolute left-3.5 top-3.5 text-neutral-400 w-4 h-4" />
+              <Mail className="absolute left-3.5 top-3.5 text-neutral-400 dark:text-neutral-500 w-4 h-4" />
             </div>
           </div>
 
           <div>
-            <label className="block text-xs font-semibold uppercase tracking-wider text-neutral-500 mb-1.5">Password</label>
+            <label className="block text-xs font-semibold uppercase tracking-wider text-neutral-500 dark:text-neutral-400 mb-1.5">Password</label>
             <div className="relative">
               <input
                 type="password"
@@ -94,9 +94,9 @@ export default function Register() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••"
-                className="w-full bg-neutral-50 border border-neutral-200 rounded-xl py-3 pl-10 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all"
+                className="w-full bg-neutral-50 dark:bg-neutral-900/50 border border-neutral-200 dark:border-neutral-700 rounded-xl py-3 pl-10 pr-4 text-sm text-neutral-900 dark:text-white placeholder-neutral-400 dark:placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all"
               />
-              <Lock className="absolute left-3.5 top-3.5 text-neutral-400 w-4 h-4" />
+              <Lock className="absolute left-3.5 top-3.5 text-neutral-400 dark:text-neutral-500 w-4 h-4" />
             </div>
           </div>
 
@@ -116,9 +116,9 @@ export default function Register() {
           </button>
         </form>
 
-        <p className="text-center text-sm text-neutral-500 mt-6">
+        <p className="text-center text-sm text-neutral-500 dark:text-neutral-400 mt-6">
           Already have an account?{' '}
-          <Link to="/login" className="font-semibold text-primary-600 hover:text-primary-700">
+          <Link to="/login" className="font-semibold text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300">
             Login here
           </Link>
         </p>
