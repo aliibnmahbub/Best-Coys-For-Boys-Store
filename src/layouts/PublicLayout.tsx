@@ -26,14 +26,10 @@ export default function PublicLayout() {
       <header className="fixed top-0 left-0 right-0 bg-white dark:bg-neutral-800 shadow-sm z-50 transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
           
-          {/* Logo Section with New Logo */}
-          <Link to="/" className="flex items-center gap-2.5">
-            <div className="w-9 h-9 rounded-xl overflow-hidden flex items-center justify-center bg-neutral-900 shadow-sm border border-neutral-200 dark:border-neutral-700 flex-shrink-0">
-              <img 
-                src="https://drive.google.com/uc?export=view&id=1A7rryCi1J3QFlk4JuwAqqoqdIZpnKIhn" 
-                alt="BEST Coys Logo" 
-                className="w-full h-full object-cover"
-              />
+          {/* Logo Section with Premium CSS/Icon Badge */}
+          <Link to="/" className="flex items-center gap-2.5 group">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center text-white font-black text-xl shadow-md shadow-blue-500/20 group-hover:scale-105 transition-transform flex-shrink-0 border border-blue-400/30">
+              B
             </div>
             <span className="font-bold text-xl text-neutral-900 dark:text-white tracking-tight hidden sm:block">
               BEST Coys For Boys
