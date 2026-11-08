@@ -12,20 +12,20 @@ export default function Cart() {
   // খালি কার্টের জন্য প্রফেশনাল এম্পটি স্টেট (Empty State)
   if (items.length === 0) {
     return (
-      <div className="min-h-[70vh] flex flex-col items-center justify-center p-4 text-center">
+      <div className="min-h-[70vh] flex flex-col items-center justify-center p-4 text-center transition-colors duration-300">
         <Helmet>
           <title>Shopping Cart | BEST Coys For Boys</title>
         </Helmet>
-        <div className="w-20 h-20 bg-primary-50 rounded-full flex items-center justify-center text-primary-500 mb-4">
+        <div className="w-20 h-20 bg-primary-50 dark:bg-neutral-800 border border-primary-100 dark:border-neutral-700 rounded-full flex items-center justify-center text-primary-500 dark:text-primary-400 mb-4 shadow-sm">
           <ShoppingBag className="w-10 h-10" />
         </div>
-        <h2 className="text-2xl font-bold text-neutral-900 mb-2">Your Cart is Empty</h2>
-        <p className="text-neutral-600 mb-6 max-w-sm">
+        <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-2">Your Cart is Empty</h2>
+        <p className="text-neutral-600 dark:text-neutral-400 mb-6 max-w-sm text-sm md:text-base leading-relaxed">
           Looks like you haven't added anything to your cart yet. Explore our products and find something you love!
         </p>
         <Link
           to="/"
-          className="bg-primary-500 text-white font-semibold px-6 py-3 rounded-full shadow-lg shadow-primary-500/30 hover:bg-primary-600 transition-colors"
+          className="bg-primary-500 hover:bg-primary-600 text-white font-semibold px-6 py-3 rounded-full shadow-lg shadow-primary-500/30 transition-colors"
         >
           Start Shopping
         </Link>
@@ -34,21 +34,21 @@ export default function Cart() {
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8">
+    <div className="max-w-7xl mx-auto px-4 py-8 transition-colors duration-300">
       <Helmet>
         <title>{`Shopping Cart (${items.length}) | BEST Coys For Boys`}</title>
       </Helmet>
 
-      <h1 className="text-2xl md:text-3xl font-bold text-neutral-900 mb-6">Shopping Cart</h1>
+      <h1 className="text-2xl md:text-3xl font-bold text-neutral-900 dark:text-white mb-6">Shopping Cart</h1>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Cart Items List */}
         <div className="lg:col-span-2 space-y-4">
-          <div className="flex justify-between items-center pb-2 border-b border-neutral-200">
-            <span className="text-sm text-neutral-500">Products ({items.length})</span>
+          <div className="flex justify-between items-center pb-2 border-b border-neutral-200 dark:border-neutral-700">
+            <span className="text-sm text-neutral-500 dark:text-neutral-400">Products ({items.length})</span>
             <button
               onClick={clearCart}
-              className="text-xs font-medium text-red-500 hover:text-red-700 transition-colors"
+              className="text-xs font-medium text-red-500 hover:text-red-700 dark:hover:text-red-400 transition-colors"
             >
               Clear Cart
             </button>
@@ -59,45 +59,45 @@ export default function Cart() {
             return (
               <div
                 key={variantKey}
-                className="bg-white rounded-2xl p-4 shadow-sm border border-neutral-100 flex items-center gap-4"
+                className="bg-white dark:bg-neutral-800 rounded-2xl p-4 shadow-sm border border-neutral-100 dark:border-neutral-700 flex items-center gap-4 transition-colors"
               >
                 <img
                   src={item.image}
                   alt={item.name}
-                  className="w-20 h-20 object-cover rounded-xl bg-neutral-100 flex-shrink-0"
+                  className="w-20 h-20 object-cover rounded-xl bg-neutral-100 dark:bg-neutral-700 flex-shrink-0"
                 />
 
                 <div className="flex-1 min-w-0">
-                  <h3 className="font-semibold text-neutral-800 text-sm md:text-base truncate">
+                  <h3 className="font-semibold text-neutral-800 dark:text-neutral-200 text-sm md:text-base truncate">
                     {item.name}
                   </h3>
                   {item.selectedVariants && Object.keys(item.selectedVariants).length > 0 && (
-                    <div className="text-xs text-neutral-500 mt-0.5 space-x-2">
+                    <div className="text-xs text-neutral-500 dark:text-neutral-400 mt-0.5 space-x-2">
                       {Object.entries(item.selectedVariants).map(([key, value]) => (
-                        <span key={key} className="inline-block bg-neutral-100 px-2 py-0.5 rounded mr-1">
+                        <span key={key} className="inline-block bg-neutral-100 dark:bg-neutral-700 text-neutral-600 dark:text-neutral-300 px-2 py-0.5 rounded mr-1">
                           {key}: {value}
                         </span>
                       ))}
                     </div>
                   )}
-                  <div className="text-primary-600 font-bold mt-1">
+                  <div className="text-primary-600 dark:text-primary-400 font-bold mt-1">
                     ৳{item.price}
                   </div>
                 </div>
 
                 {/* Quantity Controls */}
-                <div className="flex items-center gap-2 border border-neutral-200 rounded-lg p-1">
+                <div className="flex items-center gap-2 border border-neutral-200 dark:border-neutral-700 rounded-lg p-1 bg-white dark:bg-neutral-800">
                   <button
                     onClick={() => updateQuantity(item.productId, item.quantity - 1, item.selectedVariants)}
-                    className="p-1 text-neutral-600 hover:bg-neutral-100 rounded"
+                    className="p-1 text-neutral-600 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-700 rounded transition-colors"
                     aria-label="Decrease quantity"
                   >
                     <Minus className="w-4 h-4" />
                   </button>
-                  <span className="w-6 text-center text-sm font-semibold">{item.quantity}</span>
+                  <span className="w-6 text-center text-sm font-semibold text-neutral-900 dark:text-white">{item.quantity}</span>
                   <button
                     onClick={() => updateQuantity(item.productId, item.quantity + 1, item.selectedVariants)}
-                    className="p-1 text-neutral-600 hover:bg-neutral-100 rounded"
+                    className="p-1 text-neutral-600 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-700 rounded transition-colors"
                     aria-label="Increase quantity"
                   >
                     <Plus className="w-4 h-4" />
@@ -107,7 +107,7 @@ export default function Cart() {
                 {/* Remove Button */}
                 <button
                   onClick={() => removeItem(item.productId, item.selectedVariants)}
-                  className="text-neutral-400 hover:text-red-500 p-2 transition-colors"
+                  className="text-neutral-400 hover:text-red-500 dark:hover:text-red-400 p-2 transition-colors"
                   aria-label="Remove item"
                 >
                   <Trash2 className="w-5 h-5" />
@@ -118,27 +118,27 @@ export default function Cart() {
         </div>
 
         {/* Order Summary */}
-        <div className="bg-white rounded-2xl p-6 shadow-sm border border-neutral-100 h-fit space-y-4">
-          <h3 className="text-lg font-bold text-neutral-900 border-b pb-3">Order Summary</h3>
+        <div className="bg-white dark:bg-neutral-800 rounded-2xl p-6 shadow-sm border border-neutral-100 dark:border-neutral-700 h-fit space-y-4 transition-colors">
+          <h3 className="text-lg font-bold text-neutral-900 dark:text-white border-b border-neutral-100 dark:border-neutral-700 pb-3">Order Summary</h3>
 
           <div className="space-y-2 text-sm">
-            <div className="flex justify-between text-neutral-600">
+            <div className="flex justify-between text-neutral-600 dark:text-neutral-400">
               <span>Subtotal</span>
-              <span className="font-semibold text-neutral-900">৳{subtotal}</span>
+              <span className="font-semibold text-neutral-900 dark:text-white">৳{subtotal}</span>
             </div>
-            <div className="flex justify-between text-neutral-600">
+            <div className="flex justify-between text-neutral-600 dark:text-neutral-400">
               <span>Estimated Delivery</span>
-              <span className="font-semibold text-neutral-900">৳{deliveryCharge}</span>
+              <span className="font-semibold text-neutral-900 dark:text-white">৳{deliveryCharge}</span>
             </div>
-            <div className="border-t pt-2 mt-2 flex justify-between text-base font-bold text-neutral-900">
+            <div className="border-t border-neutral-100 dark:border-neutral-700 pt-2 mt-2 flex justify-between text-base font-bold text-neutral-900 dark:text-white">
               <span>Total</span>
-              <span className="text-primary-600">৳{total}</span>
+              <span className="text-primary-600 dark:text-primary-400">৳{total}</span>
             </div>
           </div>
 
           <Link
             to="/checkout"
-            className="w-full bg-primary-500 text-white font-semibold py-3 px-4 rounded-xl shadow-lg shadow-primary-500/30 hover:bg-primary-600 transition-colors flex items-center justify-center gap-2"
+            className="w-full bg-primary-500 hover:bg-primary-600 text-white font-semibold py-3 px-4 rounded-xl shadow-lg shadow-primary-500/30 transition-colors flex items-center justify-center gap-2"
           >
             Proceed to Checkout
             <ArrowRight className="w-5 h-5" />
